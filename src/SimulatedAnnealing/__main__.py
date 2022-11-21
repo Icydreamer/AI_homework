@@ -50,7 +50,6 @@ def display(sample):
         print(map[i])
 
 
-# option = "simulate_annealing"
 if __name__ == '__main__':
     size = 10
     temperature = 500
