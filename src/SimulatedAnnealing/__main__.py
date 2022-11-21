@@ -2,7 +2,8 @@ import random
 import copy
 import math
 
-def initSample(size):
+
+def init_sample(size):
     ans = [0 for _ in range(size)]
     for row in range(size):
         col = random.randint(0, size - 1)
@@ -10,7 +11,7 @@ def initSample(size):
     return ans
 
 
-def numOfConflict(sample):
+def num_of_conflict(sample):
     size = len(sample)
     conflicts = 0
     for i in range(size):
@@ -19,10 +20,11 @@ def numOfConflict(sample):
                 conflicts += 1
     return conflicts
 
-def simulatedAnnealing(sample, temperature):
+
+def simulated_annealing(sample, temperature):
     size = len(sample)
     for i in range(size):
-        curr = numOfConflict(sample)
+        curr = num_of_conflict(sample)
         if curr == 0:
             return True, sample
         j = random.randint(0, size - 1)
@@ -30,7 +32,7 @@ def simulatedAnnealing(sample, temperature):
             continue
         tmp = copy.deepcopy(sample)
         tmp[i] = j
-        attempt = numOfConflict(tmp)
+        attempt = num_of_conflict(tmp)
         if attempt <= curr:
             sample = copy.deepcopy(tmp)
         else:
@@ -55,10 +57,10 @@ if __name__ == '__main__':
     rate = 0.95
     epoch = 0
 
-    ans = initSample(size)
+    ans = init_sample(size)
     while True:
         epoch += 1
-        flag, ans = simulatedAnnealing(ans, temperature)
+        flag, ans = simulated_annealing(ans, temperature)
         if flag:
             print("Success, ", epoch)
             display(ans)
