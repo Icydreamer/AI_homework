@@ -83,9 +83,8 @@ def testHouse():
 
 
 def featureSelection():
-    data = pd.read_csv("house.csv")
-    x = data[['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX',
-              'PTRATIO', 'B', 'LSTAT']]
+    data = pd.read_csv("housing.csv")
+    x = data[['RM', 'LSTAT', 'PTRATIO', 'MEDV']]
     # print(x.head())
     y = data['MEDV']
     from sklearn.feature_selection import SelectKBest
